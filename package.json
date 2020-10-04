@@ -1,0 +1,11 @@
+{
+  "name": "utility-functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ikmrgrv/utility-functions.git",
+  "author": "Kumar Gaurav <twitter@ikmrgrv>",
+  "license": "GNU GPL V3",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
