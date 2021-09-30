@@ -5,7 +5,13 @@
   "repository": "git@github.com:ikmrgrv/utility-functions.git",
   "author": "Kumar Gaurav <twitter@ikmrgrv>",
   "license": "GNU GPL V3",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
     "jest": "^26.4.2"
   }
 }

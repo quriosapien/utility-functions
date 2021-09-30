@@ -1,54 +1,53 @@
-function getCookie (key) {
-  let rawCookie = window.document.cookie
+function parseCookie(rawCookie) {
+  return rawCookie.split(';')
+    .map((c) => c
+      .trim()
+      .split('=')
+      .map(decodeURIComponent))
+    .reduce((a, b) => {
+      const newAccumulator = a
+      const key = b[0]
+      const value = b[1]
+      try {
+        newAccumulator[key] = JSON.parse(value)
+      } catch (e) {
+        newAccumulator[key] = value
+      }
+      return a
+    }, {})
+}
 
-  let parsedCookieObject = parseCookie(rawCookie)
+function getCookie(key) {
+  const rawCookie = window.document.cookie
+
+  const parsedCookieObject = parseCookie(rawCookie)
   return parsedCookieObject && parsedCookieObject[key]
 }
 
-function parseCookie (rawCookie) {
-  let parsedCookieObject = rawCookie.split(';')
-    .map(function(c) {
-      return c
-        .trim()
-        .split('=')
-        .map(decodeURIComponent);
-    })
-    .reduce(function(a, b) {
-      try {
-        a[b[0]] = JSON.parse(b[1]);
-      } catch (e) {
-        a[b[0]] = b[1];
-      }
-      return a;
-    }, {});
-
-  return parsedCookieObject
-}
-
-function setCookies (cookies) {
+function setCookies(cookies) {
   if (!Array.isArray(cookies)) {
-    return new Error({name: 'setCookies error', message: 'argument "cookies" is not an array.'});
+    throw new Error({ name: 'setCookies error', message: 'argument "cookies" is not an array.' })
   }
 
-  cookies.forEach(element => {
-    let expire;
-    
+  cookies.forEach((element) => {
+    let expire
+
     if (!element.name || !element.value) {
-      return undefined;
+      return
     }
 
     if (element.expire) {
-      let d = new Date();
-      d.setTime(d.getTime() + (element.expiry));
-      expire = `expires=${d.toUTCString()};`;
+      const d = new Date()
+      d.setTime(d.getTime() + (element.expiry))
+      expire = `expires=${d.toUTCString()};`
     } else {
-      expire = '';
+      expire = ''
     }
 
-    let cookie = `${element.name}=${element.value};${expire}path=/`;
-    
-    window.document.cookie = cookie;
-  });
+    const cookie = `${element.name}=${element.value};${expire}path=/`
+
+    window.document.cookie = cookie
+  })
 }
 
 export default {
