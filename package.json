@@ -6,8 +6,7 @@
   "author": "Kumar Gaurav <twitter@ikmrgrv>",
   "license": "GNU GPL V3",
   "scripts": {
-    "lint": "eslint .",
-    "init-lint": "eslint --init"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "eslint": "^7.32.0",
