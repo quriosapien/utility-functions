@@ -1,13 +1,13 @@
 const waitList = {}
 
-function clearDebounce (id) {
+function clearDebounce(id) {
   if (waitList[id]) {
     clearTimeout(waitList[id])
     delete waitList[id]
   }
 }
 
-function debounce ({ id, callback, delay = 400}) {
+function debounce({ id, callback, delay = 400 }) {
   if (waitList[id]) {
     clearTimeout(waitList[id])
   }
