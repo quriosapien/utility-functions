@@ -17,4 +17,4 @@ jobs:
         run: npm ci
       - name: Checking Lint issues
         run: npm run lint
-        run: echo 'Lint job was successful. No issues found ... 🎉🎉'
+      - run: echo 'Lint job was successful. No issues found ... 🎉🎉'
